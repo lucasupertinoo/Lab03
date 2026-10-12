@@ -7,6 +7,6 @@ class Strumenti:
         self.anno_acquisto = int(anno_acquisto)
         self.valore = float(valore)
 
-    # Definisco la funzione che mi fa returnare lo strumento: incarico lo strumento di returnare se stesso
+    # Definisco la funzione che mi fa ottenere una stringa formattata che descrive l'oggetto
     def __str__(self):
         return f"{self.id_strumento}: {self.tipo} di {self.marca} acquistato nel {self.anno_acquisto} a {self.valore}€"

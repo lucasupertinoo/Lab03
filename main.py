@@ -51,7 +51,7 @@ def main():
         elif scelta == "4":
             strumenti_ordinati = deposito.strumenti_ordinati_per_marca() # Funzione dentro DepositoOggetti che returna tutti gli strumenti ordinati e li salva in una variabile
             for s in strumenti_ordinati:
-                print(f'- {s}')  # Scorro la variabile che è una lista di dizionari e stampo ogni lista
+                print(f'- {s}')  # Scorro la variabile che è una lista di oggetti e stampo ogni oggetto
 
         elif scelta == "5":
             id_strumento = input("ID strumento: ")
