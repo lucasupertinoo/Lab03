@@ -20,8 +20,8 @@ class DepositoStrumenti:
         riga = file.readline()
         while riga != "":
             campi = riga.strip().split(",")
-            s = Strumenti(campi[0], campi[1], campi[2], int(campi[3]), campi[4])
-            self.strumenti[s.id_strumento] = s  # Salvo nel dizionario lo strumento che ha come chiave il codice
+            s = Strumenti(campi[0], campi[1], campi[2], int(campi[3]), campi[4])  # Creo uno strumento che finisce nella classe Strumenti
+            self.strumenti[s.id_strumento] = s  # Salvo nel dizionario della classe DepositoStrumenti lo strumento con il suo codice come chiave
 
             num_id = int(s.id_strumento[1:])   # Leggo che cosa viene dopo la S che è il carattere 0
             if num_id > self.ultimo_codice:
@@ -32,10 +32,10 @@ class DepositoStrumenti:
 
     def aggiungi_strumento(self, tipo, marca, anno_acquisto, valore):
         """Aggiunge uno strumento nel deposito: aggiunge solo nel sistema e non aggiorna il file"""
-        id_strumento = f"S{(self.ultimo_codice + 1)}"
-        self.ultimo_codice = self.ultimo_codice + 1
-        nuovo_s = Strumenti(id_strumento, tipo, marca, anno_acquisto, valore)
-        self.strumenti[id_strumento] = nuovo_s
+        id_strumento = f"S{(self.ultimo_codice + 1)}" # Metto l'ID del nuovo strumento guardando l'ultimo e aggiungendo 1
+        self.ultimo_codice = self.ultimo_codice + 1 # Aggiorno anche la variabile ultimo_codice aggiungendo 1
+        nuovo_s = Strumenti(id_strumento, tipo, marca, anno_acquisto, valore) # Creo un nuovo strumento da inserire nella classe Strumenti
+        self.strumenti[id_strumento] = nuovo_s # Metto il nuovo strumento nel dizionario della classe DepositoStrumenti
         return nuovo_s
 
     def strumenti_ordinati_per_marca(self):
@@ -50,14 +50,14 @@ class DepositoStrumenti:
         if id_strumento not in self.strumenti:
             raise Exception("Strumento non esistente!")
 
-        id_prestito = f"P{(self.ultimo_id_prestito + 1)}"
-        self.ultimo_id_prestito = self.ultimo_id_prestito + 1
-        nuovo_p = Prestito(id_prestito, data, id_strumento, cognome_allievo)
-        self.prestiti[id_prestito] = nuovo_p
+        id_prestito = f"P{(self.ultimo_id_prestito + 1)}" # Metto l'ID del nuovo prestito guardando l'ultimo e facendo +1
+        self.ultimo_id_prestito = self.ultimo_id_prestito + 1 # Aggiorno anche la variabile corrispondente
+        nuovo_p = Prestito(id_prestito, data, id_strumento, cognome_allievo) # Creo un nuovo prestito nella classe Prestiti
+        self.prestiti[id_prestito] = nuovo_p # Aggiorno il dizionario nella classe DepositoStrumenti
         return nuovo_p
 
     def termina_prestito(self, id_prestito):
         """Termina un prestito in atto"""
         if id_prestito not in self.prestiti:
             raise Exception("Prestito non esistente!")
-        self.prestiti.pop(id_prestito)
+        self.prestiti.pop(id_prestito)  # Con pop rimuovo il prestito
